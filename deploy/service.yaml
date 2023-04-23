@@ -1,0 +1,27 @@
+# Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: dalai
+  namespace: dalai
+  labels:
+    app: dalai
+spec:
+  #ports:
+  #  - protocol: TCP
+  #    name: web
+  #    port: 80
+  selector:
+    app: dalai
+  type: ClusterIP
+  #type: LoadBalancer
+  #loadBalancerIP: 10.69.41.82
+  #ports:
+  #  - port: 3001
+  #    targetPort: 3001
+  #    nodePort: 31000
+  ports:
+  - name: dalai
+    protocol: TCP
+    port: 7860
+    targetPort: 7860

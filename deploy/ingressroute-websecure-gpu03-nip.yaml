@@ -1,0 +1,47 @@
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: ipwhitelist
+  namespace: dalai
+spec:
+  ipWhiteList:
+   sourceRange:
+      - 127.0.0.1/32
+      - 194.98.102.186
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: security
+  namespace: dalai
+spec:
+  headers:
+    frameDeny: true
+    sslRedirect: true
+    browserXssFilter: true
+    contentTypeNosniff: true
+    stsIncludeSubdomains: true
+    stsPreload: true
+    stsSeconds: 31536000
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dalai-websecure-nip
+  namespace: dalai
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`gradio.83-206-89-106.nip.io`)
+      kind: Rule
+      services:
+        - name: dalai
+          port: 7860
+      middlewares:
+      - name: security
+#      - name: ipwhitelist
+  tls:
+    certResolver: letsencrypt
+

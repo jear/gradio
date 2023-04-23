@@ -1,0 +1,14 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-nfs-static-dalai-llama
+  namespace: dalai
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 400Gi
+  volumeName: pv-nfs-dalai-llama
+  storageClassName: nfs-csi

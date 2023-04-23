@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dalai
+  namespace: dalai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dalai
+  template:
+    metadata:
+      labels:
+        app: dalai
+    spec:
+      containers:
+        - name: dalai
+          image: harbor.datasvc01.lysdemolab.fr/gradio/llama-gradio:v0.5
+#          securityContext:
+#            privileged: true # necessary to mount DataFabric
+          ports:
+            - containerPort: 7860
+          volumeMounts:
+#            - name: nfs-alpaca
+#              mountPath: /root/dalai/alpaca
+#              readOnly: false
+            - name: nfs-llama
+              mountPath: /root/dalai/llama
+              readOnly: false
+          resources:
+            limits:
+              cpu: "8"
+              memory: "32Gi"
+              nvidia.com/gpu: 1
+            requests:
+              cpu: "1"
+              memory: "4Gi"
+              nvidia.com/gpu: 1
+      volumes:
+#        - name: nfs-alpaca
+#          persistentVolumeClaim:
+#            claimName: pvc-nfs-static-dalai-alpaca
+        - name: nfs-llama
+          persistentVolumeClaim:
+            claimName: pvc-nfs-static-dalai-llama
+
+#      nodeSelector:
+#        kubernetes.io/hostname: worker-gpu-3
+
