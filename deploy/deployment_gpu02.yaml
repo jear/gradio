@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: dalai
-          image: harbor.datasvc01.lysdemolab.fr/gradio/llama-gradio:v0.5
+          image: harbor.datasvc01.lysdemolab.fr/gradio/llama-gradio:v0.8
 #          securityContext:
 #            privileged: true # necessary to mount DataFabric
           ports:
@@ -30,7 +30,7 @@ spec:
           resources:
             limits:
               cpu: "8"
-              memory: "32Gi"
+              memory: "128Gi"
               nvidia.com/gpu: 1
             requests:
               cpu: "1"

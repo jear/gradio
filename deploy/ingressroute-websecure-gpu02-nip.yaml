@@ -2,6 +2,16 @@
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
 metadata:
+  name: ratelimit
+  namespace: dalai
+spec:
+  rateLimit:
+    average: 100
+    burst: 50
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
   name: ipwhitelist
   namespace: dalai
 spec:
@@ -41,6 +51,7 @@ spec:
           port: 7860
       middlewares:
       - name: security
+      - name: ratelimit
 #      - name: ipwhitelist
   tls:
     certResolver: letsencrypt
