@@ -52,7 +52,7 @@ spec:
       middlewares:
       - name: security
       - name: ratelimit
-#      - name: ipwhitelist
+      - name: ipwhitelist
   tls:
     certResolver: letsencrypt
 
