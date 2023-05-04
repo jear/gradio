@@ -18,7 +18,7 @@ spec:
   ipWhiteList:
    sourceRange:
       - 127.0.0.1/32
-      - 194.98.102.186
+      - 165.225.76.229
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
