@@ -23,6 +23,8 @@ spec:
      - 92.184.100.202
      - 91.170.182.6
      - 165.225.20.222
+     - 165.225.204.237
+     - 86.242.185.95
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware

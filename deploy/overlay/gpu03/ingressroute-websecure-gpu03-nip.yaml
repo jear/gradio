@@ -19,6 +19,7 @@ spec:
    sourceRange:
       - 127.0.0.1/32
       - 165.225.76.229
+      - 91.170.182.6
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: Middleware
@@ -52,7 +53,7 @@ spec:
       middlewares:
       - name: security
       - name: ratelimit
-      - name: ipwhitelist
+#      - name: ipwhitelist
   tls:
     certResolver: letsencrypt
 
